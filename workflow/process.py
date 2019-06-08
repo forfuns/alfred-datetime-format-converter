@@ -38,7 +38,8 @@ def alfred_items_for_value(value):
     results = []
 
     # First item as timestamp
-    item_value = calendar.timegm(value.datetime.utctimetuple())
+    # item_value = calendar.timegm(value.datetime.utctimetuple())
+    item_value = long(calendar.timegm(value.datetime.timetuple()) * 1000.0 + value.datetime.microsecond / 1000.0)
     results.append(alfred.Item(
         title=str(item_value),
         subtitle=u'UTC Timestamp',
